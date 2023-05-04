@@ -1,0 +1,6 @@
+<SourceQueueMessage>
+    <type>type</type>
+    <transactionAmount>0000</transactionAmount>
+    <operationData>000000</operationData>
+    <cardGuid>00000000000</cardGuid>
+    <hexData>0000000100

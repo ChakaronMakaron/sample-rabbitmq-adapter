@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+ext {
+    springBootVersion = '2.7.10'
+}
+
+group = 'com.lemakhno'
+version = '1.0'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+def springVaultCoreVersion = '2.3.3'
+def jacksonXmlVersion = '2.13.5'
+def apacheHttpClientVersion = '4.5.14'
+def apacheStringUtilsVersion = '3.12.0'
+def resilienceSpringBootVersion = '1.7.0'
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'org.springframework.vault', name: 'spring-vault-core', version: springVaultCoreVersion
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: jacksonXmlVersion
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: apacheHttpClientVersion
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: apacheStringUtilsVersion
+	implementation group: 'io.github.resilience4j', name: 'resilience4j-spring-boot2', version: resilienceSpringBootVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: springBootVersion
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

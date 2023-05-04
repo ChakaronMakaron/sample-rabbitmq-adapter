@@ -1,0 +1,8 @@
+resilience4j.retry:
+  instances:
+    getItems:
+      maxAttempts: ${resilience4j.retry.instances.getItems.max-attempts}
+      waitDuration: ${resilience4j.retry.instances.getItems.wait-duration}
+      retryExceptions:
+        - org.springframework.web.client.HttpClientErrorException
+        - org.springframework.web.client.HttpServerErrorException
