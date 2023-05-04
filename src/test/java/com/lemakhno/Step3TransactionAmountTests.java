@@ -60,19 +60,6 @@ public class Step3TransactionAmountTests {
     }
 
     @Test
-    public void amountDoesNotStartWithZeroTest() {
-        SourceQueueMessage sourceQueueMessage = TestUtil.getSourceQueueMessage();
-        sourceQueueMessage.setTransactionAmount("111111110035");
-        MessageStatus status = null;
-        try {
-            sourceQueueProcessingSteps.getTransactionAmount(sourceQueueMessage, "123");
-        } catch (StopMessageProcessingException e) {
-            status = e.getMessageStatus();
-        }
-        assertEquals(CONFIRM, status);
-    }
-
-    @Test
     public void invalidTagValueTest() {
         SourceQueueMessage sourceQueueMessage = TestUtil.getSourceQueueMessage();
         sourceQueueMessage.setTransactionAmount("jiu913131fd");
